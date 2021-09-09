@@ -1,0 +1,13 @@
+{
+    "files.exclude": {
+        "**/x64": true,
+        "**/*.sln": true,
+        "**/*.cmake": true,
+        "**/CMakeFiles": true,
+        "**/*.vcxproj": true,
+        "**/*.vcxproj.filters": true,
+        "**/CMakeCache.txt":true,
+        "**/Birb.dir":true,
+        "**/Release":true
+    },
+}

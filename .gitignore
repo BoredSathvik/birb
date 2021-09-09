@@ -1,0 +1,10 @@
+/Release
+/Birb.dir
+CMakeCache.txt
+*.vcxproj.filters
+*.vcxproj
+CMakeFiles
+*.CMakeCache
+*.cmake
+*.sln
+x64
