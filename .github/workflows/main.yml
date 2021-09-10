@@ -29,13 +29,15 @@ jobs:
         uses: microsoft/setup-msbuild@v1.0.3
         
       - name: cd into project
-        run: cd D:\a\birb\birb
+        run: cd D:\a\birb\birb\client
         
       - name: configure cmake
-        run: cmake --configure client/
-        
+        run: cmake .
       - name: build client
-        run: cmake --build client/ --config Release
+        run: cmake --build . --config Release
+        
+      - name: cd into project
+        run: cd D:\a\birb\birb\client
         
       - name: build injector
         run: msbuild CLInjector/CLInjector.csproj
