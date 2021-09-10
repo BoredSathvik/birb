@@ -29,7 +29,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1.0.3
         
       - name: cd into project
-        run: cd D:\birb\birb
+        run: cd D:\a\birb\birb
         
       - name: configure cmake
         run: cmake client/
