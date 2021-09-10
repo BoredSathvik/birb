@@ -35,7 +35,7 @@ jobs:
         run: cmake client/
         
       - name: build client
-        run: cmake --build client/ --config Release
+        run: cmake --configure --build client/ --config Release
         
       - name: build injector
         run: msbuild CLInjector/CLInjector.csproj
