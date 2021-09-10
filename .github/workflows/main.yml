@@ -28,5 +28,10 @@ jobs:
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v1.0.3
         
-      - name: Build the Project
+      - name: Build the project
         run: D:/a/birb/birb/build.bat
+        
+      - uses: actions/upload-artifact@v2
+        with:
+          name: BirbClient
+          path: D:\a\birb\birb\build
