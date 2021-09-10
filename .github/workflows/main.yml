@@ -32,10 +32,10 @@ jobs:
         run: cd D:\a\birb\birb
         
       - name: configure cmake
-        run: cmake client/
+        run: cmake --configure client/
         
       - name: build client
-        run: cmake --configure --build client/ --config Release
+        run: cmake --build client/ --config Release
         
       - name: build injector
         run: msbuild CLInjector/CLInjector.csproj
