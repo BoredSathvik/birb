@@ -24,14 +24,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+     
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v1.0.3
-      - name: cd into project
-        run: cd D:\a\birb\birb
+
       - name: configure cmake
-        run: cmake client/
+        run: cmake .
+     
       - name: build client
-        run: cmake --build client/ --config Release
+        run: cmake --build . --config Release
         
       - name: build injector
         run: msbuild CLInjector/CLInjector.csproj

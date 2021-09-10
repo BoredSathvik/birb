@@ -45,7 +45,7 @@ namespace CLInjector
             if (targetProcessIndex.Length > 0)
             {
                 applyAppPackages(DLLPath);
-                Process targetProcess = Process.GetProcessesByName("Minecraft.Windows")[0];
+                Process targetProcess = targetProcessIndex[0];
                 IntPtr procHandle = OpenProcess(PROCESS_CREATE_THREAD | PROCESS_QUERY_INFORMATION | PROCESS_VM_OPERATION | PROCESS_VM_WRITE | PROCESS_VM_READ, false, targetProcess.Id);
                 IntPtr loadLibraryAddr = GetProcAddress(GetModuleHandle("kernel32.dll"), "LoadLibraryA");
                 IntPtr allocMemAddress = VirtualAllocEx(procHandle, IntPtr.Zero, (uint)((DLLPath.Length + 1) * Marshal.SizeOf(typeof(char))), MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
