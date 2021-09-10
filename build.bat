@@ -2,8 +2,7 @@
 echo run this in the developer command line if you havent already and install cmake thanks, ill fix this later maybe
 REM make client
 
-cmake client/ 
-cmake --build client/ --config Release
+./Client/build.bat
 
 REM make injector
 msbuild CLInjector/CLInjector.csproj
