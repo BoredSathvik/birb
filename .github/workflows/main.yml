@@ -24,31 +24,31 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v1.0.3
+      - name: build
+        run: ./build.bat
+      # - name: cd into project
+      #   run: cd D:\a\birb\birb\client
         
-      - name: cd into project
-        run: cd D:\a\birb\birb\client
+      # - name: configure cmake
+      #   run: cmake .
+      # - name: build client
+      #   run: cmake --build . --config Release
         
-      - name: configure cmake
-        run: cmake .
-      - name: build client
-        run: cmake --build . --config Release
+      # - name: cd into project
+      #   run: cd D:\a\birb\birb\
         
-      - name: cd into project
-        run: cd D:\a\birb\birb\client
+      # - name: build injector
+      #   run: msbuild CLInjector/CLInjector.csproj
         
-      - name: build injector
-        run: msbuild CLInjector/CLInjector.csproj
-        
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Client
-          path: D:\a\birb\birb\client\Release\Birb.dll
+      # - uses: actions/upload-artifact@v2
+      #   with:
+      #     name: Client
+      #     path: D:\a\birb\birb\client\Release\Birb.dll
           
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Injector
-          path: D:\a\birb\birb\CLInjector\build\CLInjector.exe
+      # - uses: actions/upload-artifact@v2
+      #   with:
+      #     name: Injector
+      #     path: D:\a\birb\birb\CLInjector\build\CLInjector.exe
       
