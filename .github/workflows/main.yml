@@ -28,10 +28,25 @@ jobs:
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v1.0.3
         
-      - name: Build the project
-        run: D:/a/birb/birb/build.bat
+      - name: cd into project
+        run: cd D:\birb\birb
+        
+      - name: configure cmake
+        run: cmake client/
+        
+      - name: build client
+        run: cmake --build client/ --config Release
+        
+      - name: build injector
+        run: msbuild CLInjector/CLInjector.csproj
         
       - uses: actions/upload-artifact@v2
         with:
-          name: BirbClient
-          path: D:\a\birb\birb\build
+          name: Client
+          path: D:\a\birb\birb\client\Release\Birb.dll
+          
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Injector
+          path: D:\a\birb\birb\CLInjector\build\CLInjector.exe
+      
