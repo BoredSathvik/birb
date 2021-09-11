@@ -9,11 +9,11 @@ mkdir build
 copy client\Release\Birb.dll build\birb.dll
 copy Injector\Release\Injector.exe build\Injector.exe
 
-del /q /s "*.vcxproj"
-del /q /s "*.csproj"
-del /q /s "*.vcxproj.*"
-del /q "*.sln"
-del /q /s "cmake_install.cmake"
-del /q /s "CMakeCache.txt"
-rmdir /s /q "Birb.dir"
-rmdir /s /q "CMakeFiles"
+@REM del /q /s "*.vcxproj"
+@REM del /q /s "*.csproj"
+@REM del /q /s "*.vcxproj.*"
+@REM del /q "*.sln"
+@REM del /q /s "cmake_install.cmake"
+@REM del /q /s "CMakeCache.txt"
+@REM rmdir /s /q "Birb.dir"
+@REM rmdir /s /q "CMakeFiles"

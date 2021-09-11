@@ -6,6 +6,7 @@ CMakeFiles
 *.CMakeCache
 *.cmake
 *.sln
+*.csproj
 x64
 /.vs
 out/
