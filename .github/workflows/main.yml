@@ -34,9 +34,6 @@ jobs:
       - name: build client
         run: cmake --build . --config Release
         
-      - name: build injector
-        run: msbuild CLInjector/CLInjector.csproj
-        
       - uses: actions/upload-artifact@v2
         with:
           name: Client
@@ -45,5 +42,5 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: Injector
-          path: D:\a\birb\birb\CLInjector\build\CLInjector.exe
+          path: D:\a\birb\birb\Injector\Release\Injector.exe
       
