@@ -7,8 +7,8 @@
 class Cps : public Module
 {
 public:
-    int rClicks;
-    int lClicks;
+    int rClicks = 0;
+    int lClicks = 0;
     std::vector<int> rcps;
     std::vector<int> lcps;
 
