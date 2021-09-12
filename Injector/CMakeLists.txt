@@ -17,6 +17,7 @@ target_sources(Injector PRIVATE
 	"App.cs"
 	"Injector.cs"
 	"Win32.cs"
+	"Properties/AssemblyInfo.cs"
 )
 
 message("${CMAKE_CURRENT_LIST_DIR}")

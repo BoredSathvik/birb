@@ -8,10 +8,10 @@ void Fps::OnLevelRender()
 void Fps::OnRender(MinecraftUIRenderContext *ctx)
 {
 
-    if (ctx->clientInstance->minecraftGame->canUseKeys)
+    if (ctx->clientInst->minecraftGame->canUseKeys)
     {
         std::string text = std::string("FPS: ").append(std::to_string(fps));
-        BitmapFont *font = ctx->clientInstance->minecraftGame->Font;
+        BitmapFont *font = ctx->clientInst->minecraftGame->Font;
         TextMeasureData measureData = TextMeasureData();
         CaretMeasureData caretData = CaretMeasureData();
 

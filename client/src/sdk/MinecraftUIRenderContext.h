@@ -67,7 +67,7 @@ struct CaretMeasureData
 struct MinecraftUIRenderContext
 {
 public:
-    ClientInstance *clientInstance;
+    class ClientInstance *clientInst;
 
 public:
     class ScreenContext *screenContext;

@@ -8,6 +8,8 @@
         "**/*.vcxproj.filters": true,
         "**/CMakeCache.txt":true,
         "**/Birb.dir":true,
-        "**/*.csproj":true
+        "**/*.csproj":true,
+        "**/obj":true,
+        "**/.github":true
     },
 }

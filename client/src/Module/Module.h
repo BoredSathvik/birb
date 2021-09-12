@@ -19,7 +19,7 @@ public:
     virtual void OnDisable(){};
     virtual void OnTick(){};
     virtual void OnKey(int key, bool pressed){};
-    virtual void OnMouse(char button, char down, short mX, short mY){};
+    virtual bool OnMouse(char button, char down, short mX, short mY) { return false; };
     virtual void OnRender(MinecraftUIRenderContext *ctx){};
     virtual void OnLevelRender(){};
 };

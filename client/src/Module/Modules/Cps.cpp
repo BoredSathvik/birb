@@ -1,6 +1,6 @@
 #include "Cps.h"
 
-void Cps::OnMouse(char button, char pressed, short mX, short mY)
+bool Cps::OnMouse(char button, char pressed, short mX, short mY)
 {
     if (button == 1)
     {
@@ -16,11 +16,12 @@ void Cps::OnMouse(char button, char pressed, short mX, short mY)
             rClicks += 1;
         }
     }
+    return false;
 }
 
 void Cps::OnRender(MinecraftUIRenderContext *ctx)
 {
-    if (ctx->clientInstance->minecraftGame->canUseKeys)
+    if (ctx->clientInst->minecraftGame->canUseKeys)
     {
         unsigned int ldcps = 0;
         unsigned int rdcps = 0;
@@ -33,7 +34,7 @@ void Cps::OnRender(MinecraftUIRenderContext *ctx)
             rdcps += clicks;
         }
         std::string text = std::string("CPS: ").append(std::to_string(ldcps).append(std::string(" | ").append(std::to_string(rdcps))));
-        BitmapFont *font = ctx->clientInstance->minecraftGame->Font;
+        BitmapFont *font = ctx->clientInst->minecraftGame->Font;
 
         TextMeasureData measureData = TextMeasureData();
         CaretMeasureData caretData = CaretMeasureData();

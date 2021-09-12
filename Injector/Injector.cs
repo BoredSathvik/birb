@@ -34,6 +34,10 @@ namespace Injector
                 Process[] possiblilties = Process.GetProcessesByName(procName);
                 if (possiblilties.Length == 0)
                 {
+                    Console.WriteLine("Opening minecraft...");
+                    Process.Start("minecraft://");
+                    Thread.Sleep(5000);
+                    Console.WriteLine("Starting injection...");
                     if (tries > 30)
                     {
                         //Couldnt find process, let user know and crash

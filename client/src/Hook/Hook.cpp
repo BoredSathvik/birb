@@ -4,6 +4,7 @@ KeyInput KeyOG = NULL;
 MouseInput MouseOG = NULL;
 Renderer RenderOG = NULL;
 LevelRenderer LevelRendererOG = NULL;
+ClientInstanceFn ClientInstanceOG = NULL;
 
 void __fastcall KeyHook(int key, bool pressed)
 {
@@ -19,14 +20,19 @@ void __fastcall KeyHook(int key, bool pressed)
 
 void __fastcall MouseHook(__int64 a1, char button, char down, short mouseX, short mouseY, short relativeX, short relativeY, char a8)
 {
+    bool noRet = false;
     for (auto i : ModuleManager::getModules())
     {
         if (i->enabled)
         {
-            i->OnMouse(button, down, mouseX, mouseY);
+            if (i->OnMouse(button, down, mouseX, mouseY))
+            {
+                noRet = true;
+            };
         }
     }
-    return MouseOG(a1, button, down, mouseX, mouseY, relativeX, relativeY, a8);
+    if (!noRet)
+        return MouseOG(a1, button, down, mouseX, mouseY, relativeX, relativeY, a8);
 }
 
 void __fastcall RendererHook(class ScreenView *screenView, MinecraftUIRenderContext *context)
@@ -54,12 +60,21 @@ void __fastcall LevelRendererHook(__int64 _this, __int64 a2, __int64 a3)
 
     return LevelRendererOG(_this, a2, a3);
 }
+
+void __fastcall ClientInstanceHook(ClientInstance *instance, char a2)
+{
+    Utils::clientInstance = instance;
+
+    return ClientInstanceOG(instance, a2);
+}
+
 Hook::Hook()
 {
     MH_CreateHook((void *)Mem::AOBScan("?? 89 5C 24 08 57 ?? 83 EC 30 ?? 05 ?? ?? ?? ?? 8B DA"), &KeyHook, (void **)&KeyOG);
     MH_CreateHook((void *)Mem::AOBScan("48 8B C4 48 89 58 ?? 48 89 68 ?? 48 89 70 ?? 57 41 54 41 55 41 56 41 57 48 83 EC ?? 44 0F B7 BC 24 ?? ?? ?? ?? 48 8B D9"), &MouseHook, (void **)&MouseOG);
     MH_CreateHook((void *)Mem::AOBScan("48 8B C4 48 89 58 ?? 55 56 57 41 54 41 55 41 56 41 57 48 8D A8 ?? ?? ?? ?? 48 81 EC ?? ?? ?? ?? 0F 29 70 B8 0F 29 78 A8 48 8B 05 ?? ?? ?? ?? 48 33 C4 48 89 85 ?? ?? ?? ?? 4C 8B FA 48 89 54 24 ?? 4C 8B E9"), &RendererHook, (void **)&RenderOG);
     MH_CreateHook((void *)Mem::AOBScan("48 89 5C 24 10 48 89 74 24 20 57 48 81 EC ?? ?? ?? ?? 48 8B 05 ?? ?? ?? ?? 48 33 C4 48 89 84 24 ?? ?? ?? ?? 49 8B F8 48 8B DA"), &LevelRendererHook, (void **)&LevelRendererOG);
+    MH_CreateHook((void *)Mem::AOBScan("?? 89 5C 24 10 ?? 89 74 24 18 ?? 89 7C 24 20 55 ?? 54 ?? 55 ?? 56 ?? 57 ?? 8D AC 24 70 FA FF FF"), &ClientInstanceHook, (void **)&ClientInstanceOG);
 }
 
 void Hook::Enable()

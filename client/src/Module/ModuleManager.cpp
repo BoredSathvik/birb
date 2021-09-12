@@ -21,4 +21,5 @@ Module *ModuleManager::getModuleByName(std::string name)
             return mod;
         }
     }
+    return nullptr;
 };
