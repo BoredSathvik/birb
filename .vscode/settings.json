@@ -12,4 +12,8 @@
         "**/obj":true,
         "**/.github":true
     },
+    "files.associations": {
+        "*.bin": "asm-collection",
+        "string": "cpp"
+    },
 }

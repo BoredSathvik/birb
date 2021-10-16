@@ -27,25 +27,21 @@ namespace Injector
 
         public static void awaitProcess(string procName)
         {
-            int tries = 0;
             while (true)
             {
-                Thread.Sleep(100);
                 Process[] possiblilties = Process.GetProcessesByName(procName);
                 if (possiblilties.Length == 0)
                 {
                     Console.WriteLine("Opening minecraft...");
                     Process.Start("minecraft://");
                     Thread.Sleep(5000);
-                    Console.WriteLine("Starting injection...");
-                    if (tries > 30)
+
+                    possiblilties = Process.GetProcessesByName(procName);
+                    if (possiblilties.Length == 0)
                     {
-                        //Couldnt find process, let user know and crash
-                        Console.WriteLine("Failed to find process \"" + procName + "\"!");
-                        throw new Exception("Failed to find target!");
+                        throw new Exception("Minecraft not found, install minecraft maybe?");
                     }
-                    tries++;
-                    Console.WriteLine("FAIL #" + tries);
+
                     continue;
                 }
                 Process temptargetProc = possiblilties[0];
@@ -73,8 +69,10 @@ namespace Injector
 
             foreach (ProcessModule pm in targetProc.Modules)
             {
-                if (pm.ModuleName.StartsWith("inject", StringComparison.InvariantCultureIgnoreCase))
-                    return;
+                if (pm.FileName == strDllName)
+                {
+                    throw new Exception("");
+                };
             }
 
             if (!targetProc.Responding)

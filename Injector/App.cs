@@ -1,3 +1,5 @@
+using System;
+
 namespace Injector
 {
     public class App
@@ -5,6 +7,7 @@ namespace Injector
         public static void Main(string[] args)
         {
             Injector.RunBackend();
+            Console.ReadKey();
         }
     }
 }
