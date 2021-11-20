@@ -7,7 +7,7 @@ class ModuleManager
 {
 
 public:
-    static inline std::vector<Module *> *Modules = new std::vector<Module *>();
+    static inline std::vector<class Module *> *Modules = new std::vector<class Module *>();
     static void InitModules();
     static void AddModule(Module *Module);
     static void RemoveModules();

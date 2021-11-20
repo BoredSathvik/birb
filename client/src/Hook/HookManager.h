@@ -5,7 +5,7 @@
 
 class HookManager
 {
-    static inline std::vector<Hook *> *hooks = new std::vector<Hook *>();
+    static inline std::vector<class Hook *> *hooks = new std::vector<class Hook *>();
 
 public:
     static void InitHooks();
