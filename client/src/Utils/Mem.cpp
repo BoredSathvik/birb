@@ -66,3 +66,8 @@ uintptr_t Mem::FindDMAAddy(uintptr_t ptr, std::vector<unsigned int> offsets)
     }
     return addr;
 }
+
+HMODULE Mem::GetThisModule()
+{
+    return GetModuleHandleA(nullptr);
+}

@@ -1,19 +1,32 @@
 #include <Windows.h>
 #include <thread>
+#include <chrono>
+#include <ctime>
+
+#include "Hook/HookManager.h"
+#include "Module/ModuleManager.h"
+#include "Utils/Utils.h"
 
 void start()
 {
-    //RenderFunction:
-    // parm: __int64 a1, __int64 a2
-    // ret: don't care
-    // pattern: ?? 8B C4 ?? 89 58 18 55 56 57 ?? 54 ?? 55 ?? 56 ?? 57 ?? 8D A8 98 FD FF FF ?? 81 EC 30 03 00 00 ?? ?? 70 B8 0F ?? ?? A8 ?? 8B 05 71 82 0E 03
+
+    Utils::DebugF("Seting up modules (1/2)");
+    ModuleManager::InitModules();
+    Utils::DebugF("Seting up modules (2/2)");
+    HookManager::InitHooks();
 }
 
-BOOL __stdcall DllMain(void *, int reason, void *)
+BOOL __stdcall DllMain(HMODULE hModule, int reason, void *)
 {
     if (reason == 1)
     {
-        std::thread(start).detach();
+        Utils::hMod = hModule;
+        time_t now = time(0);
+        Utils::DebugF("--------------------------------------------------");
+        Utils::DebugF(std::string(ctime(&now)).c_str());
+
+        Utils::DebugF("Starting thread...");
+        CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)start, NULL, 0, NULL);
     }
     else if (reason == 0)
     {

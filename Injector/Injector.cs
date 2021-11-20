@@ -71,7 +71,7 @@ namespace Injector
             {
                 if (pm.FileName == strDllName)
                 {
-                    throw new Exception("");
+                    throw new Exception("Dll already injected");
                 };
             }
 
