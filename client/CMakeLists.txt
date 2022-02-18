@@ -11,6 +11,7 @@ link_directories("${CMAKE_CURRENT_LIST_DIR}/Lib/PolyHook_2_0/_install/lib/")
 file(GLOB sources
 	"src/main.cpp"
 	"src/utils/*.cpp"
+    "src/ui/*.cpp"
 )
 
 add_library(Birb SHARED ${sources})

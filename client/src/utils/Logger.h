@@ -6,7 +6,8 @@
 
 class Logger
 {
-    static void DebugF(const char *out)
+public:
+    static void LogF(const char *out)
     {
         std::string dir = getenv("APPDATA") + std::string("\\..\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\RoamingState\\" + std::string("Birb_Logs.txt"));
 
@@ -17,9 +18,8 @@ class Logger
         logs << out << std::endl;
         logs.close();
     }
-
-    static void DebugF(const std::string out)
+    static void LogF(const std::string out)
     {
-        Logger::DebugF(out.c_str());
+        Logger::LogF(out.c_str());
     }
 };

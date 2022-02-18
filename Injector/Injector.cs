@@ -12,16 +12,16 @@ namespace Injector
         public static Process targetProc;
         public static IntPtr pHandle;
 
-        public static void RunBackend()
+        public static void RunBackend(string[] args)
         {
             Console.WriteLine("Credits to Lunity https://github.com/DisabledMallis/Lunity");
             awaitProcess("Minecraft.Windows");
             Console.WriteLine("Process found");
             Console.WriteLine("Applying ALL_APPLICATION_PACKAGES");
-            applyAppPackages("birb.dll");
+            applyAppPackages(args[0]);
             Console.WriteLine("Permissions applied");
             Console.WriteLine("Injecting...");
-            InjectDll("birb.dll");
+            InjectDll(args[0]);
             Console.WriteLine("Injection complete");
         }
 
