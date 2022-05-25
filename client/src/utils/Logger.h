@@ -22,4 +22,19 @@ public:
     {
         Logger::LogF(out.c_str());
     }
+
+    static bool ErrorF(const HRESULT hr, const char *out)
+    {
+        if (FAILED(hr))
+        {
+            std::string out_str = std::string(out);
+            out_str.push_back(' ');
+            out_str.append(std::to_string(hr));
+
+            Logger::LogF(out_str);
+            return true;
+        }
+
+        return false;
+    }
 };
