@@ -6,7 +6,7 @@ namespace Injector
     {
         public static void Main(string[] args)
         {
-            Injector.RunBackend();
+            Injector.RunBackend(args);
         }
     }
 }
