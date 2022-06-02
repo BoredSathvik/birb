@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../hook.h"
 #include "../../../Lib/imgui/imgui.h"
 
@@ -7,6 +9,8 @@ class MouseHook : public Hook
 
 public:
     static inline uintptr_t func_original = 0;
+
     MouseHook();
+
     void HookFunc() override;
 };

@@ -16,8 +16,6 @@ file(GLOB sources
     "src/gui/renderer/*.cpp"
     "src/hook/*.cpp"
     "src/hook/hooks/*.cpp"
-    # "src/gui/dx_framework/*.cpp"
-    # "src/gui/dx_framework/imgui/*.cpp"
 )
 
 add_library(Birb SHARED ${sources})

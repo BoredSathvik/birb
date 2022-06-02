@@ -7,7 +7,7 @@
 DxManager::DxManager()
 {
     CreateSwapChain();
-    CreateD2DResources();
+    // CreateD2DResources();
     CreateSwapChainResources();
 
     winrt::agile_ref<CoreWindow> corewindow = CoreApplication::MainView().CoreWindow();
@@ -16,6 +16,7 @@ DxManager::DxManager()
     DispatchedHandler const &agileCallback = [&]()
     {
         dpi = DisplayInformation::GetForCurrentView().LogicalDpi();
+        CoreWindow::GetForCurrentThread().SizeChanged({this, &DxManager::OnWindowResize});
     };
     dispatcher.RunAsync(CoreDispatcherPriority::Normal, agileCallback).get();
 }
@@ -114,54 +115,6 @@ void DxManager::CreateSwapChain()
     };
 }
 
-void DxManager::CreateD2DResources()
-{
-#if defined(ENABLE_DEBUG_LAYER)
-    D2D1_FACTORY_OPTIONS options;
-    options.debugLevel = D2D1_DEBUG_LEVEL_ERROR;
-    if (FAILED(D2D1CreateFactory(
-            D2D1_FACTORY_TYPE_SINGLE_THREADED,
-            __uuidof(ID2D1Factory3),
-            &options,
-            d2d_factory.put_void())))
-    {
-        Logger::LogF("[Error] Failed to create D2D factory");
-        return;
-    }
-#else
-
-    if (FAILED(D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, IID_PPV_ARGS(d2d_factory.put()))))
-    {
-        Logger::LogF("[Error] Failed to create D2D factory");
-        return;
-    }
-#endif
-
-    winrt::com_ptr<IDXGIDevice3> dxgi_device;
-    dxgi_device = d3d_device.as<IDXGIDevice3>();
-
-    if (FAILED(d2d_factory->CreateDevice(dxgi_device.get(), d2d_device.put())))
-    {
-        Logger::LogF("[Error] Failed to create D2D device");
-        return;
-    }
-
-    if (FAILED(d2d_device->CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS_NONE, d2d_context.put())))
-    {
-        Logger::LogF("[Error] Failed to create D2D context");
-        return;
-    }
-
-    if (FAILED(DWriteCreateFactory(
-            DWRITE_FACTORY_TYPE_SHARED,
-            __uuidof(dwrite_factory),
-            reinterpret_cast<IUnknown **>(dwrite_factory.put()))))
-    {
-        Logger::LogF("[Error] Failed to create DWrite factory");
-        return;
-    }
-}
-
 void DxManager::CreateSwapChainResources()
 {
     winrt::com_ptr<ID3D11Texture2D> back_buffer;
@@ -220,50 +173,50 @@ void DxManager::CreateSwapChainResources()
 
     d3d_context->RSSetViewports(1, &screen_viewport);
 
-    // direct2D bitmap creation stuff
-    D2D1_BITMAP_PROPERTIES1 bitmapProperties = D2D1::BitmapProperties1(
-        D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
-        D2D1::PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM, D2D1_ALPHA_MODE_PREMULTIPLIED),
-        dpi,
-        dpi);
+    // // direct2D bitmap creation stuff
+    // D2D1_BITMAP_PROPERTIES1 bitmapProperties = D2D1::BitmapProperties1(
+    //     D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
+    //     D2D1::PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM, D2D1_ALPHA_MODE_PREMULTIPLIED),
+    //     dpi,
+    //     dpi);
 
-    winrt::com_ptr<IDXGIResource1> dxgi_back_buffer;
-    if (FAILED(swapchain->GetBuffer(0, IID_PPV_ARGS(dxgi_back_buffer.put()))))
-    {
-        Logger::LogF("[Error] Failed to get back_buffer");
-        return;
-    }
+    // winrt::com_ptr<IDXGIResource1> dxgi_back_buffer;
+    // if (FAILED(swapchain->GetBuffer(0, IID_PPV_ARGS(dxgi_back_buffer.put()))))
+    // {
+    //     Logger::LogF("[Error] Failed to get back_buffer");
+    //     return;
+    // }
 
-    winrt::com_ptr<IDXGISurface2> dxgi_surface;
-    if (FAILED(dxgi_back_buffer->CreateSubresourceSurface(0, dxgi_surface.put())))
-    {
-        Logger::LogF("[Error] Failed to create dxgi_surface");
-        return;
-    }
+    // winrt::com_ptr<IDXGISurface2> dxgi_surface;
+    // if (FAILED(dxgi_back_buffer->CreateSubresourceSurface(0, dxgi_surface.put())))
+    // {
+    //     Logger::LogF("[Error] Failed to create dxgi_surface");
+    //     return;
+    // }
 
-    if (FAILED(d2d_context->CreateBitmapFromDxgiSurface(
-            dxgi_surface.get(),
-            &bitmapProperties,
-            d2d_target_bitmap.put())))
-    {
-        Logger::LogF("[Error] Failed to create d2d_target_bitmap");
-        return;
-    };
+    // if (FAILED(d2d_context->CreateBitmapFromDxgiSurface(
+    //         dxgi_surface.get(),
+    //         &bitmapProperties,
+    //         d2d_target_bitmap.put())))
+    // {
+    //     Logger::LogF("[Error] Failed to create d2d_target_bitmap");
+    //     return;
+    // };
 
-    d2d_context->SetTarget(d2d_target_bitmap.get());
-    d2d_context->SetTextAntialiasMode(D2D1_TEXT_ANTIALIAS_MODE_GRAYSCALE);
+    // d2d_context->SetTarget(d2d_target_bitmap.get());
+    // d2d_context->SetTextAntialiasMode(D2D1_TEXT_ANTIALIAS_MODE_GRAYSCALE);
 
     resizing = false;
 }
 
-void DxManager::OnWindowResize(CoreWindow const & /* window */, WindowSizeChangedEventArgs const &args)
+void DxManager::OnWindowResize(CoreWindow const &, WindowSizeChangedEventArgs const &args)
 {
     resizing = true;
 
     d3d_context->OMSetRenderTargets(0, nullptr, nullptr);
     d3d_render_target_view = nullptr;
-    d2d_context->SetTarget(nullptr);
-    d2d_target_bitmap = nullptr;
+    // d2d_context->SetTarget(nullptr);
+    // d2d_target_bitmap = nullptr;
     d3d_depth_stencil_view = nullptr;
     d3d_context->Flush();
 
@@ -296,4 +249,52 @@ void DxManager::OnWindowResize(CoreWindow const & /* window */, WindowSizeChange
             .append(std::to_string(back_buffer_desc.Width))
             .append("x")
             .append(std::to_string(back_buffer_desc.Height)));
+}
+
+void DxManager::CreateD2DResources()
+{
+    // #if defined(ENABLE_DEBUG_LAYER)
+    //     D2D1_FACTORY_OPTIONS options;
+    //     options.debugLevel = D2D1_DEBUG_LEVEL_ERROR;
+    //     if (FAILED(D2D1CreateFactory(
+    //             D2D1_FACTORY_TYPE_SINGLE_THREADED,
+    //             __uuidof(ID2D1Factory3),
+    //             &options,
+    //             d2d_factory.put_void())))
+    //     {
+    //         Logger::LogF("[Error] Failed to create D2D factory");
+    //         return;
+    //     }
+    // #else
+
+    //     if (FAILED(D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, IID_PPV_ARGS(d2d_factory.put()))))
+    //     {
+    //         Logger::LogF("[Error] Failed to create D2D factory");
+    //         return;
+    //     }
+    // #endif
+
+    //     winrt::com_ptr<IDXGIDevice3> dxgi_device;
+    //     dxgi_device = d3d_device.as<IDXGIDevice3>();
+
+    //     if (FAILED(d2d_factory->CreateDevice(dxgi_device.get(), d2d_device.put())))
+    //     {
+    //         Logger::LogF("[Error] Failed to create D2D device");
+    //         return;
+    //     }
+
+    //     if (FAILED(d2d_device->CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS_NONE, d2d_context.put())))
+    //     {
+    //         Logger::LogF("[Error] Failed to create D2D context");
+    //         return;
+    //     }
+
+    //     if (FAILED(DWriteCreateFactory(
+    //             DWRITE_FACTORY_TYPE_SHARED,
+    //             __uuidof(dwrite_factory),
+    //             reinterpret_cast<IUnknown **>(dwrite_factory.put()))))
+    //     {
+    //         Logger::LogF("[Error] Failed to create DWrite factory");
+    //         return;
+    //     }
 }

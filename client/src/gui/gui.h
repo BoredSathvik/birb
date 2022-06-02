@@ -15,19 +15,20 @@ using namespace winrt::Windows::ApplicationModel::Core;
 
 class Gui
 {
-private:
-    std::shared_ptr<DxManager> dx_manager;
-
 public:
+    std::shared_ptr<DxManager> dx_manager;
+    bool show_window = true;
+
     Gui();
     ~Gui();
     static Gui *GetInstance()
     {
-        static Gui *instance = new Gui();
-        return instance;
+        static Gui instance;
+        return &instance;
     };
 
     void Init();
+    void CleanGui();
 };
 
-void Render(DxManager *dx_manager);
+void Render();

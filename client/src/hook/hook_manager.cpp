@@ -10,11 +10,6 @@ HookManager::HookManager()
 
 HookManager::~HookManager()
 {
-    for (auto hook : *hooks)
-    {
-        delete hook;
-    }
-    delete hooks;
 }
 
 void HookManager::HookAll()
@@ -23,6 +18,16 @@ void HookManager::HookAll()
     {
         hook->HookFunc();
     }
+}
+
+void HookManager::CleanHooks()
+{
+    for (auto hook : *hooks)
+    {
+        delete hook;
+    }
+    hooks->clear();
+    delete hooks;
 }
 
 template <typename T>

@@ -8,19 +8,20 @@
 class HookManager
 {
 private:
-    std::vector<Hook *> *hooks;
-
     HookManager();
     ~HookManager();
 
 public:
+    std::vector<Hook *> *hooks;
+
     static HookManager *GetInstance()
     {
-        static HookManager *instance = new HookManager();
-        return instance;
+        static HookManager instance;
+        return &instance;
     };
 
     void HookAll();
+    void CleanHooks();
 
     template <typename T>
     T *GetHook(char *name);

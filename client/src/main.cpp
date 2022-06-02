@@ -8,37 +8,11 @@
 
 using namespace winrt::Windows::ApplicationModel::Core;
 
-static inline uintptr_t func_original = 0;
-
-// void KeyHook(int key, int state)
-// {
-//     auto io = ImGui::GetIO();
-
-//     Logger::LogF("Key pressed");
-
-//     return PLH::FnCast(func_original, KeyHook)(key, state);
-// }
-
 void start(HMODULE h_mod)
 {
     Logger::LogF("Starting...");
 
     Gui::GetInstance()->Init();
-
-    // PLH::CapstoneDisassembler dis = PLH::CapstoneDisassembler(PLH::Mode::x64);
-
-    // uintptr_t hook_addr = Mem::AOBScan("48 ?? ?? ?? 0F B6 ?? 4C ?? ?? ?? ?? ?? ?? 89 ?? ?? ?? 88");
-
-    // if (hook_addr == 0)
-    // {
-    //     Logger::LogF("Failed to find hook address");
-    // }
-    // else
-    // {
-    //     auto detour = new PLH::x64Detour((char *)hook_addr, (char *)KeyHook, (uint64_t *)&func_original, dis);
-
-    //     detour->hook();
-    // }
     HookManager::GetInstance()->HookAll();
 }
 

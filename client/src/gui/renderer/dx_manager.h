@@ -41,13 +41,13 @@ public:
     winrt::com_ptr<ID3D11DepthStencilView> d3d_depth_stencil_view;
     D3D11_VIEWPORT screen_viewport;
 
-    winrt::com_ptr<ID2D1Factory3> d2d_factory;
-    winrt::com_ptr<ID2D1Device2> d2d_device;
-    winrt::com_ptr<ID2D1DeviceContext2> d2d_context;
-    winrt::com_ptr<ID2D1Bitmap1> d2d_target_bitmap;
+    // winrt::com_ptr<ID2D1Factory3> d2d_factory;
+    // winrt::com_ptr<ID2D1Device2> d2d_device;
+    // winrt::com_ptr<ID2D1DeviceContext2> d2d_context;
+    // winrt::com_ptr<ID2D1Bitmap1> d2d_target_bitmap;
 
-    winrt::com_ptr<IDWriteFactory3> dwrite_factory;
-    winrt::com_ptr<IWICImagingFactory2> m_wic_factory;
+    // winrt::com_ptr<IDWriteFactory3> dwrite_factory;
+    // winrt::com_ptr<IWICImagingFactory2> m_wic_factory;
 
 private:
     void CreateSwapChain();

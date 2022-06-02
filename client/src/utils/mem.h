@@ -15,8 +15,6 @@ class Mem
 public:
     static uintptr_t AOBScan(const char *pattern)
     {
-        Logger::LogF("AOBScan 1");
-
         MODULEINFO info;
         GetModuleInformation(GetCurrentProcess(), GetModuleHandleA("Minecraft.Windows.exe"), &info, sizeof(MODULEINFO));
 
@@ -44,8 +42,6 @@ public:
                 {
                     if (!*pat)
                     {
-                        Logger::LogF("Got the pattern");
-
                         return firstMatch;
                     }
                     if (*(PBYTE)pat == '\?' || *(BYTE *)j == get_byte(pat))
@@ -53,7 +49,9 @@ public:
                         if (!firstMatch)
                             firstMatch = j;
                         if (!pat[2])
+                        {
                             return firstMatch;
+                        }
                         if (*(PWORD)pat == '\?\?' || *(PBYTE)pat != '\?')
                             pat += 3;
                         else
@@ -66,8 +64,6 @@ public:
                     }
                 }
             }
-
-            Logger::LogF(std::string("Region ").append(std::to_string(i)));
         }
         return 0;
     };
