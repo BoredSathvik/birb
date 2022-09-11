@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F4619B34-7BC6-332D-87E3-249E3AE515E7}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <LangVersion>9.0</LangVersion>
+    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>Injector</ProjectName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+    <ManagedAssembly>true</ManagedAssembly>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <OutputPath>C:\Users\sathv\Desktop\Projects\games\birb\Injector\Debug\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <PlatformToolset>v143</PlatformToolset>
+    <AssemblyName>Injector</AssemblyName>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Users\sathv\Desktop\Projects\games\birb\Injector\Debug\Injector.exe</StartProgram>
+    <DebugType>full</DebugType>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <Optimize>false</Optimize>
+    <WarningLevel>3</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <OutputPath>C:\Users\sathv\Desktop\Projects\games\birb\Injector\Release\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <PlatformToolset>v143</PlatformToolset>
+    <AssemblyName>Injector</AssemblyName>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Users\sathv\Desktop\Projects\games\birb\Injector\Release\Injector.exe</StartProgram>
+    <DebugType>none</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>queue</ErrorReport>
+    <Optimize>true</Optimize>
+    <WarningLevel>1</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <OutputPath>C:\Users\sathv\Desktop\Projects\games\birb\Injector\MinSizeRel\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <PlatformToolset>v143</PlatformToolset>
+    <AssemblyName>Injector</AssemblyName>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Users\sathv\Desktop\Projects\games\birb\Injector\MinSizeRel\Injector.exe</StartProgram>
+    <DebugType>none</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <OutputPath>C:\Users\sathv\Desktop\Projects\games\birb\Injector\RelWithDebInfo\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <PlatformToolset>v143</PlatformToolset>
+    <AssemblyName>Injector</AssemblyName>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Users\sathv\Desktop\Projects\games\birb\Injector\RelWithDebInfo\Injector.exe</StartProgram>
+    <DebugType>full</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.CSharp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.CSharp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemGroup>
+    <None Include="C:\Users\sathv\Desktop\Projects\games\birb\Injector\CMakeLists.txt">
+    </None>
+  </ItemGroup>
+  <Target Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"
+    Name="CustomCommand_Debug_0f548f9b5711bd4c8f8ee60e4d6d5987"
+    Inputs="C:/Users/sathv/Desktop/Projects/games/birb/Injector/CMakeLists.txt"
+    Outputs="C:\Users\sathv\Desktop\Projects\games\birb\Injector\CMakeFiles\generate.stamp">
+    <Exec Command="echo Building Custom Rule C:/Users/sathv/Desktop/Projects/games/birb/Injector/CMakeLists.txt" />
+    <Exec Command="setlocal&#10;&quot;C:\Program Files\CMake\bin\cmake.exe&quot; -SC:/Users/sathv/Desktop/Projects/games/birb -BC:/Users/sathv/Desktop/Projects/games/birb --check-stamp-file C:/Users/sathv/Desktop/Projects/games/birb/Injector/CMakeFiles/generate.stamp&#10;if %errorlevel% neq 0 goto :cmEnd&#10;:cmEnd&#10;endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone&#10;:cmErrorLevel&#10;exit /b %1&#10;:cmDone&#10;if %errorlevel% neq 0 goto :VCEnd&#10;:VCEnd" />
+  </Target>
+  <Target Condition="'$(Configuration)|$(Platform)'=='Release|x64'"
+    Name="CustomCommand_Release_0f548f9b5711bd4c8f8ee60e4d6d5987"
+    Inputs="C:/Users/sathv/Desktop/Projects/games/birb/Injector/CMakeLists.txt"
+    Outputs="C:\Users\sathv\Desktop\Projects\games\birb\Injector\CMakeFiles\generate.stamp">
+    <Exec Command="echo Building Custom Rule C:/Users/sathv/Desktop/Projects/games/birb/Injector/CMakeLists.txt" />
+    <Exec Command="setlocal&#10;&quot;C:\Program Files\CMake\bin\cmake.exe&quot; -SC:/Users/sathv/Desktop/Projects/games/birb -BC:/Users/sathv/Desktop/Projects/games/birb --check-stamp-file C:/Users/sathv/Desktop/Projects/games/birb/Injector/CMakeFiles/generate.stamp&#10;if %errorlevel% neq 0 goto :cmEnd&#10;:cmEnd&#10;endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone&#10;:cmErrorLevel&#10;exit /b %1&#10;:cmDone&#10;if %errorlevel% neq 0 goto :VCEnd&#10;:VCEnd" />
+  </Target>
+  <Target Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'"
+    Name="CustomCommand_MinSizeRel_0f548f9b5711bd4c8f8ee60e4d6d5987"
+    Inputs="C:/Users/sathv/Desktop/Projects/games/birb/Injector/CMakeLists.txt"
+    Outputs="C:\Users\sathv\Desktop\Projects\games\birb\Injector\CMakeFiles\generate.stamp">
+    <Exec Command="echo Building Custom Rule C:/Users/sathv/Desktop/Projects/games/birb/Injector/CMakeLists.txt" />
+    <Exec Command="setlocal&#10;&quot;C:\Program Files\CMake\bin\cmake.exe&quot; -SC:/Users/sathv/Desktop/Projects/games/birb -BC:/Users/sathv/Desktop/Projects/games/birb --check-stamp-file C:/Users/sathv/Desktop/Projects/games/birb/Injector/CMakeFiles/generate.stamp&#10;if %errorlevel% neq 0 goto :cmEnd&#10;:cmEnd&#10;endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone&#10;:cmErrorLevel&#10;exit /b %1&#10;:cmDone&#10;if %errorlevel% neq 0 goto :VCEnd&#10;:VCEnd" />
+  </Target>
+  <Target Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'"
+    Name="CustomCommand_RelWithDebInfo_0f548f9b5711bd4c8f8ee60e4d6d5987"
+    Inputs="C:/Users/sathv/Desktop/Projects/games/birb/Injector/CMakeLists.txt"
+    Outputs="C:\Users\sathv\Desktop\Projects\games\birb\Injector\CMakeFiles\generate.stamp">
+    <Exec Command="echo Building Custom Rule C:/Users/sathv/Desktop/Projects/games/birb/Injector/CMakeLists.txt" />
+    <Exec Command="setlocal&#10;&quot;C:\Program Files\CMake\bin\cmake.exe&quot; -SC:/Users/sathv/Desktop/Projects/games/birb -BC:/Users/sathv/Desktop/Projects/games/birb --check-stamp-file C:/Users/sathv/Desktop/Projects/games/birb/Injector/CMakeFiles/generate.stamp&#10;if %errorlevel% neq 0 goto :cmEnd&#10;:cmEnd&#10;endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone&#10;:cmErrorLevel&#10;exit /b %1&#10;:cmDone&#10;if %errorlevel% neq 0 goto :VCEnd&#10;:VCEnd" />
+  </Target>
+  <ItemGroup>
+    <Compile Include="C:\Users\sathv\Desktop\Projects\games\birb\Injector\App.cs" />
+    <Compile Include="C:\Users\sathv\Desktop\Projects\games\birb\Injector\Injector.cs" />
+    <Compile Include="C:\Users\sathv\Desktop\Projects\games\birb\Injector\Win32.cs" />
+    <Compile Include="C:\Users\sathv\Desktop\Projects\games\birb\Injector\Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\sathv\Desktop\Projects\games\birb\ZERO_CHECK.vcxproj">
+      <Project>{57A43027-9B1B-3A9B-8425-330FC3AD351E}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'MinSizeRel'">
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'RelWithDebInfo'">
+  </PropertyGroup>
+  <PropertyGroup>
+    <BuildDependsOn>
+      CustomCommand_Debug_0f548f9b5711bd4c8f8ee60e4d6d5987;
+      CustomCommand_MinSizeRel_0f548f9b5711bd4c8f8ee60e4d6d5987;
+      CustomCommand_RelWithDebInfo_0f548f9b5711bd4c8f8ee60e4d6d5987;
+      CustomCommand_Release_0f548f9b5711bd4c8f8ee60e4d6d5987;
+      $(BuildDependsOn)
+</BuildDependsOn>
+  </PropertyGroup>
+</Project>

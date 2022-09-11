@@ -1,31 +1,56 @@
 
 #include "gui/gui.h"
-#include "utils/global.h"
 #include "hook/hook_manager.h"
+#include "module/module_manager.h"
+#include "utils/global.h"
 
 #pragma comment(lib, "windowsapp")
-#pragma comment(lib, "dxguid.lib")
 
-using namespace winrt::Windows::ApplicationModel::Core;
-
-void start(HMODULE h_mod)
-{
+DWORD WINAPI start() {
     Logger::LogF("Starting...");
 
-    Gui::GetInstance()->Init();
     HookManager::GetInstance()->HookAll();
+    Gui::GetInstance()->Init();
+    ModuleManager::GetInstance()->Init();
+
+    // Runs every vsync
+    while (true) {
+        if (!Gui::GetInstance()->dx_manager->resizing) {
+            if (!Global::running) {
+                break;
+            }
+
+            Gui::GetInstance()->Render();
+
+            Gui::GetInstance()->dx_manager->swapchain->Present(1, 0);
+        } else {
+            Sleep(50);
+        }
+    }
+
+    HookManager::GetInstance()->CleanHooks();
+    ModuleManager::GetInstance()->CleanModules();
+    Gui::GetInstance()->CleanGui();
+
+    Logger::LogF("Freeing Library...");
+
+    Sleep(100);
+    FreeLibraryAndExitThread(Global::h_mod, 0);
+
+    return 0;
 }
 
-BOOL __stdcall DllMain(HMODULE h_mod, int reason, void *)
-{
-    if (reason == 1)
-    {
-        Global::h_mod = h_mod;
+BOOL __stdcall DllMain(HMODULE h_mod, int reason, LPVOID lpReserved) {
+    switch (reason) {
+        case DLL_PROCESS_ATTACH:
+            Global::h_mod = h_mod;
+            CloseHandle(CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)start,
+                                     NULL, 0, NULL));
 
-        CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)start, h_mod, 0, nullptr));
-    }
-    else if (reason == 0)
-    {
+        case DLL_PROCESS_DETACH:
+        case DLL_THREAD_ATTACH:
+        case DLL_THREAD_DETACH:
+            break;
     }
     return true;
 }

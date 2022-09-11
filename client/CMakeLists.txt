@@ -8,6 +8,11 @@ endif()
 
 link_directories("${CMAKE_CURRENT_LIST_DIR}/Lib/PolyHook_2_0/_install/lib/")
 
+# add_compile_options("$<$<NOT:$<CONFIG:Debug>>:/Zi>")
+# add_link_options("$<$<NOT:$<CONFIG:Debug>>:/DEBUG>")
+# add_link_options("$<$<NOT:$<CONFIG:Debug>>:/OPT:REF>")
+# add_link_options("$<$<NOT:$<CONFIG:Debug>>:/OPT:ICF>")
+
 file(GLOB sources
     "Lib/imgui/*.cpp"
 	"src/main.cpp"
@@ -16,6 +21,10 @@ file(GLOB sources
     "src/gui/renderer/*.cpp"
     "src/hook/*.cpp"
     "src/hook/hooks/*.cpp"
+    "src/module/*.cpp"
+    "src/module/modules/*.cpp"
+    "src/gui/menus/*.cpp"
+    # "src/gui/assets/fonts/*.cpp"
 )
 
 add_library(Birb SHARED ${sources})
