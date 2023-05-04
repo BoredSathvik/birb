@@ -1,24 +1,22 @@
 #pragma once
 
+#include "MinHook.h"
 #include <string>
-#include <polyhook2/Detour/x64Detour.hpp>
-#include <polyhook2/CapstoneDisassembler.hpp>
 
-#include "../utils/mem.h"
 #include "../utils/logger.h"
+#include "../utils/mem.h"
 
 class Hook
 {
-public:
+  public:
     std::string signature;
     std::string name;
-
-    PLH::x64Detour *detour;
 
     Hook(std::string name, std::string signature);
     virtual ~Hook();
 
     virtual void HookFunc();
 
-    bool AutoHook(void *callback_ptr, uintptr_t *func_original);
+    bool AutoHook(void *callback_ptr, void **func_original);
+    bool ManualHook(void *hook_addr, void *callback_ptr, void **func_original);
 };

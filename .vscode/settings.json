@@ -11,10 +11,10 @@
         "**/CMakeFiles": true,
         "**/*.vcxproj": true,
         "**/*.vcxproj.filters": true,
-        "**/CMakeCache.txt":true,
-        "**/Birb.dir":true,
-        "**/*.csproj":true,
-        "**/obj":true,
+        "**/CMakeCache.txt": true,
+        "**/Birb.dir": true,
+        "**/*.csproj": true,
+        "**/obj": true,
     },
     "files.associations": {
         "*.bin": "asm-collection",
@@ -101,6 +101,7 @@
         "coroutine": "cpp",
         "resumable": "cpp",
         "*.inc": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "ranges": "cpp"
     },
 }

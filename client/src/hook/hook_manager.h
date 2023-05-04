@@ -1,17 +1,19 @@
 #pragma once
 
+#include "MinHook.h"
 #include <vector>
+
 #include "hook.h"
 #include "hooks/key_hook.h"
 #include "hooks/mouse_hook.h"
 
 class HookManager
 {
-private:
+  private:
     HookManager();
     ~HookManager();
 
-public:
+  public:
     std::vector<Hook *> *hooks;
 
     static HookManager *GetInstance()
@@ -23,6 +25,5 @@ public:
     void HookAll();
     void CleanHooks();
 
-    template <typename T>
-    T *GetHook(char *name);
+    template <typename T> T *GetHook(char *name);
 };

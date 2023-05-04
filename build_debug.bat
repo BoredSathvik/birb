@@ -1,11 +1,11 @@
 echo off
 
-git submodule update --init --recursive
+@REM git submodule update --init --recursive
 
-cd client/Lib/PolyHook_2_0
-cmake -B"./_build" -DCMAKE_INSTALL_PREFIX="./_install/" -DPOLYHOOK_BUILD_SHARED_LIB=OFF
-cmake --build "./_build" --config Debug --target INSTALL
-cd ../../../
+@REM cd client/Lib/PolyHook_2_0
+@REM cmake -B"./_build" -DCMAKE_INSTALL_PREFIX="./_install/" -DPOLYHOOK_BUILD_SHARED_LIB=OFF
+@REM cmake --build "./_build" --config Debug --target INSTALL
+@REM cd ../../../
 
 cmake .
 cmake --build . --config Debug
