@@ -18,7 +18,7 @@ class CPSMod : public Module {
    private:
     milliseconds last;
 
-    int clicks[10] = {};
+    int clicks[20] = {};
     int current = 0;
 
     void OnInit() override;

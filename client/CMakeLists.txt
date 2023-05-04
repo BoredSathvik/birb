@@ -6,7 +6,7 @@ add_compile_options(
 )
 endif()
 
-link_directories("${CMAKE_CURRENT_LIST_DIR}/Lib/PolyHook_2_0/_install/lib/")
+# link_directories("${CMAKE_CURRENT_LIST_DIR}/Lib/PolyHook_2_0/_install/lib/")
 
 # add_compile_options("$<$<NOT:$<CONFIG:Debug>>:/Zi>")
 # add_link_options("$<$<NOT:$<CONFIG:Debug>>:/DEBUG>")
@@ -15,6 +15,8 @@ link_directories("${CMAKE_CURRENT_LIST_DIR}/Lib/PolyHook_2_0/_install/lib/")
 
 file(GLOB sources
     "Lib/imgui/*.cpp"
+    "Lib/minhook/*.cpp"
+    "Lib/minhook/hde/*.cpp"
 	"src/main.cpp"
 	"src/utils/*.cpp"
     "src/gui/*.cpp"
@@ -29,5 +31,5 @@ file(GLOB sources
 
 add_library(Birb SHARED ${sources})
 
-target_include_directories(Birb PRIVATE "${CMAKE_CURRENT_LIST_DIR}/Lib/PolyHook_2_0/_install/include/")
-target_link_libraries(Birb PRIVATE d3d12.lib dxgi.lib PolyHook_2 capstone version)
+target_include_directories(Birb PRIVATE "${CMAKE_CURRENT_LIST_DIR}/Lib/include/")
+target_link_libraries(Birb PRIVATE d3d12.lib dxgi.lib version)
